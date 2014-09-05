@@ -1,5 +1,8 @@
 Run asynchronous tasks in a persistent order.
 
+```
+npm install node-async-runner
+```
 ``` js
 var AsyncRunner = require("node-async-runner").AsyncRunner;
 
