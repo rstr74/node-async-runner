@@ -9,6 +9,11 @@
     "name": "Robbert Streng",
     "email": "rstreng2009@gmail.com"
   },
+  "homepage":"https://github.com/rstr74/node-async-runner",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rstr74/node-async-runner.git"
+  },
   "keywords": [
     "async",
     "runner",
