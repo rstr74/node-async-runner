@@ -14,6 +14,12 @@
     "type": "git",
     "url": "https://github.com/rstr74/node-async-runner.git"
   },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/mit-license.php"
+    }
+  ],
   "keywords": [
     "async",
     "runner",
