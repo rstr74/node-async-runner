@@ -1,7 +1,7 @@
 {
   "name": "node-async-runner",
   "description": "Run asynchronous tasks in a persistent order.",
-  "version": "1.1.1",
+  "version": "1.1.0",
   "engines": {
     "node": ">=0.10.13"
   },
@@ -14,21 +14,22 @@
     "type": "git",
     "url": "https://github.com/rstr74/node-async-runner.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://opensource.org/licenses/mit-license.php"
-    }
-  ],
+  "licenses": [{
+    "type": "MIT",
+    "url": "http://opensource.org/licenses/mit-license.php"
+  }],
   "keywords": [
     "async",
     "runner",
     "callbacks"
   ],
   "dependencies": {
-    "debug": "2.0.0",
+    "debug": "2.0.0"
   },
   "main": "./index.js",
+  "scripts": {
+    "test":"DEBUG=ASYNC_RUNNER node ./test/test.js"
+  },
   "directories": {
     "lib": "./lib",
     "test": "./test"
