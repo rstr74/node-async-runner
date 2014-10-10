@@ -1,7 +1,7 @@
 {
   "name": "node-async-runner",
-  "description": "Run asynchronous tasks in a persistent order.",
-  "version": "1.1.0",
+  "description": "Run asynchronous tasks in a queued order.",
+  "version": "1.2.0",
   "engines": {
     "node": ">=0.10.13"
   },
@@ -33,15 +33,5 @@
   "directories": {
     "lib": "./lib",
     "test": "./test"
-  },
-  "_id": "node-async-runner@1.1.0",
-  "_from": "node-async-runner@",
-  "readme": "Run asynchronous tasks in a persistent order.\n\n```\nnpm install node-async-runner\n```\n\n**options**\n----\n\n* **loop [int]**\n\n  repeat the stack of tasks *n* times, default = 0\n\n* **delay [int] or false**\n  \n  Wait for *n* millisecond, before starting a new task in the stack. Default = false;\n\n  \n*  **logging [boolean]**\n\n   Set this to true to turn on logging\n\n**Task**\nmyAsyncRunner.addTask(fn:Function,data:Object);\n   \n   \nEach task (fn) function gets 3 params:\n\n``` js\nfunction(callback, index, data) {}\n```\n\n\n\n\n* **callback [Object]**\n\n  - callback.next\n  - callback.getExecutionTime\n  - callback.pause\n  - callback.resume\n\n* **index [Int]**\n\n  The sequence index of the current task\n  \n* **data [Object]**\n\n  The data passed to myAsyncRunner.addTask as second parameter. This data is passed when executing a task.\n  \n----\n\n``` js\nvar AsyncRunner = require(\"node-async-runner\").AsyncRunner;\n\nvar myAsyncRunner = new AsyncRunner({\n            loop: 3,\n            delay: false,\n            logging: false\n});\n\n\nmyAsyncRunner.addStatusChangeListener(\n    function(event) {\n        switch (event.type) {\n            case AsyncRunner.FINISHED:\n                console.log(\"Event \" + AsyncRunner.FINISHED);\n                break;\n        }\n    }\n);\n\nmyAsyncRunner.addTask(function(callback, index, data) {\n    ready = function() {\n        console.log(\"Task \" +index+\" \"+  data.text + \" >FINISHED IN \" + callback.getExecutionTime());\n        callback.next();\n    }\n    //simulate a time consuming task\n    setTimeout(ready, 500);\n}, {\n    text: \"hello world !\"\n});\n\n\nmyAsyncRunner.addTask(function(callback, index, data) {\n    ready = function() {\n        console.log(\"Task \" +index+\" \"+  data.text + \" >FINISHED IN \" + callback.getExecutionTime());\n        callback.next()\n    }\n    // simulate a time consuming task\n    setTimeout(ready, 1000);\n}, {\n    text: \"goodbye world !\"\n});\n\nmyAsyncRunner.executeAll();\n```\n",
-  "readmeFilename": "readme.md",
-  "gitHead": "12d556b06c7a01c8de446d159c4b41b3dc667f2b",
-  "bugs": {
-    "url": "https://github.com/rstr74/node-async-runner/issues"
-  },
-  "scripts": {},
-  "_shasum": "2d632e9850db9f45061716bd7da3f8018c7b75aa"
+  }
 }

@@ -1,4 +1,4 @@
-Run asynchronous tasks in a persistent order.
+Run asynchronous tasks in a queued order.
 
 ```
 npm install node-async-runner
@@ -15,10 +15,13 @@ npm install node-async-runner
   
   Wait for *n* millisecond, before starting a new task in the stack. Default = false;
 
-  
 *  **logging [boolean]**
 
    Set this to true to turn on logging
+
+*  **continuous [boolean]**
+
+   If this option is set to true, new tasks added with myAsyncRunner.addTask will keep the runner going. This is useful for handling al sorts of server requests in a FIFO order.
 
 **Task**
 myAsyncRunner.addTask(fn:Function,data:Object);

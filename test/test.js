@@ -1,4 +1,4 @@
-var AsyncRunner = require("../lib/async-runner");
+var AsyncRunner = require("../lib/async-runner").AsyncRunner;
 
 var myAsyncRunner = new AsyncRunner({
 	loop:3,
