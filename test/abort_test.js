@@ -47,7 +47,8 @@ myAsyncRunner.addTask(function(callback, index, data) {
 		console.log("Pause for 1000 ms");
 		setTimeout(function(){
 			callback.resume();
-			callback.next();
+			callback.abort();
+			//callback.next();
 		},1000);
 	}
 	// simulate a time consuming task
