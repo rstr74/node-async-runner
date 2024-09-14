@@ -1,9 +1,9 @@
 {
   "name": "node-async-runner",
   "description": "Run asynchronous tasks in a queued order.",
-  "version": "1.2.0",
+  "version": "2.0.0-rc.1",
   "engines": {
-    "node": ">=0.10.13"
+    "node": ">=14.0.0"
   },
   "author": {
     "name": "Robbert Streng",
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/rstr74/node-async-runner",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rstr74/node-async-runner.git"
+    "url": "git+https://github.com/rstr74/node-async-runner.git"
   },
   "licenses": [
     {
@@ -21,16 +21,14 @@
     }
   ],
   "keywords": [
-    "async",
-    "runner",
-    "callbacks"
+    "asynchronous",
+    "tasks",
+    "task management",
+    "task runner"
   ],
-  "dependencies": {
-    "debug": "^2.6.9"
-  },
   "main": "./index.js",
   "scripts": {
-    "test": "DEBUG=ASYNC_RUNNER node ./test/test.js"
+    "test": "node ./test/test.js"
   },
   "directories": {
     "lib": "./lib",
