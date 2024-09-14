@@ -1,4 +1,4 @@
-const AsyncRunner = require('./main');
+const AsyncRunner = require('../lib/async-runner');
 
 // Create an instance with custom options
 const runner = new AsyncRunner({ maxThreads: 1, stopOnError: false });
