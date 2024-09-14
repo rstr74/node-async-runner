@@ -1,59 +1,63 @@
-var AsyncRunner = require("../lib/async-runner").AsyncRunner;
+const AsyncRunner = require('./main');
 
-var myAsyncRunner = new AsyncRunner({
-	loop:3,
-	logging:false,
-	delay:3000
+// Create an instance with custom options
+const runner = new AsyncRunner({ maxThreads: 1, stopOnError: false });
+
+// Define asynchronous tasks with names
+const tasks = [
+    {
+        task: async function () {
+            // Simulate async operation
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            return 'Result 1';
+        },
+        name: 'Task One',
+    },
+    {
+        task: async function () {
+            // Simulate async operation with error
+            await new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('Error in Task 2')), 500)
+            );
+        },
+        name: 'Task Two',
+    },
+    async function () {
+        // Simulate async operation
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        return 'Result 3';
+    },
+];
+
+// Add tasks to the runner
+runner.add(tasks);
+
+// Handle 'next' event
+runner.on('next', (taskFunction, taskHash, taskName) => {
+    console.log(`Starting task: ${taskName || 'Unnamed Task'}`);
+    console.log(`Task Hash: ${taskHash}`);
 });
 
-myAsyncRunner.addStatusChangeListener(
-	function(event) {
-		switch (event.type) {
-			case AsyncRunner.INACTIVE:
-				console.log(AsyncRunner.INACTIVE);
-			break;
-			case AsyncRunner.RUNNING:
-				console.log(AsyncRunner.RUNNING);
-			break;
-			case AsyncRunner.PAUSE:
-				console.log(AsyncRunner.PAUSE);
-			break;
-			case AsyncRunner.RESUME:
-				console.log(AsyncRunner.RESUME);
-			break;
-			case AsyncRunner.ABORT:
-				console.log(AsyncRunner.ABORT);
-			break;
-		}
-	}
-);
-
-myAsyncRunner.addTask(function(callback, index, data) {
-	ready = function() {
-		console.log("Task " +index+" "+  data.text + " >FINISHED IN " + callback.getExecutionTime());
-		callback.next();
-	}
-	//simulate a time consuming task
-	setTimeout(ready, 500);
-}, {
-	text: "hello world !"
+// Handle 'done' event
+runner.on('done', (results, errors) => {
+    console.log('All tasks completed.');
+    console.log('Results:', results);
+    if (errors && errors.length > 0) {
+        console.log('Errors:', errors);
+    }
 });
 
-
-myAsyncRunner.addTask(function(callback, index, data) {
-	ready = function() {
-		console.log("Task " +index+" "+  data.text + " >FINISHED IN " + callback.getExecutionTime());
-		callback.pause();
-		console.log("Pause for 1000 ms");
-		setTimeout(function(){
-			callback.resume();
-			callback.next();
-		},1000);
-	}
-	// simulate a time consuming task
-	setTimeout(ready, 1000);
-}, {
-	text: "goodbye world !"
+// Handle 'error' event
+runner.on('error', (err) => {
+    console.error('Task execution halted due to error:', err);
 });
 
-myAsyncRunner.executeAll();
+// Run tasks
+runner
+    .run()
+    .then((results) => {
+        console.log('Execution completed successfully:', results);
+    })
+    .catch((err) => {
+        console.error('Execution stopped with error:', err);
+    });
