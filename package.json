@@ -25,12 +25,9 @@
     "runner",
     "callbacks"
   ],
-  "dependencies": {
-    "debug": "^2.6.9"
-  },
   "main": "./index.js",
   "scripts": {
-    "test": "DEBUG=ASYNC_RUNNER node ./test/test.js"
+    "test": "node ./test/test.js"
   },
   "directories": {
     "lib": "./lib",
