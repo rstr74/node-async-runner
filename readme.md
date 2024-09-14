@@ -1,3 +1,6 @@
+# note: 
+This update of this package is in development, do not use in production
+
 # AsyncRunner v2.0.0
 
 AsyncRunner is a Node.js utility for managing and executing asynchronous tasks with controlled concurrency. Version 2.0.0 introduces modern JavaScript features (`async/await`), task hashing, task naming, and enhanced event handling.
@@ -21,7 +24,6 @@ AsyncRunner is a Node.js utility for managing and executing asynchronous tasks w
   - [Simple Example](#simple-example)
   - [Using Task Names and Hashes](#using-task-names-and-hashes)
 - [Version History](#version-history)
-- [License](#license)
 
 ---
 
