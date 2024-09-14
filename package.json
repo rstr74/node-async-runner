@@ -3,7 +3,7 @@
   "description": "Run asynchronous tasks in a queued order.",
   "version": "2.0.0",
   "engines": {
-    "node": ">=20.13.1"
+    "node": ">=14.0.0"
   },
   "author": {
     "name": "Robbert Streng",
