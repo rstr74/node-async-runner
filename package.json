@@ -21,9 +21,10 @@
     }
   ],
   "keywords": [
-    "async",
-    "runner",
-    "callbacks"
+    "asynchronous",
+    "tasks",
+    "task management",
+    "task runner"
   ],
   "main": "./index.js",
   "scripts": {
